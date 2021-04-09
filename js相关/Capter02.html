@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>讲述各种运算符</div>
+  <input type="text" class="age">
+  <div class="msg"></div>
+  <script>
+    // 赋值运算
+    let a = 1
+    console.log(a)
+    // 加和运算
+    a += 1
+    console.log(a)
+    // ++运算
+    console.log(a++)
+    console.log(++a) // 阅读性不好 不建议使用的
+
+    // 比较运算，会返回true和false
+    console.log(1 <= 2)
+    console.log(1 == "1")
+
+    let div = document.querySelector(".msg")
+    div.innerHTML = ""
+    document.querySelector(".age").addEventListener("keyup", function () {
+      div.innerHTML = this.value > 90 ? "年龄超过90岁了，不可以哦。" : ""
+    })
+
+    // 逻辑运算 && || ! 逻辑与、或、非。比较基础，就先不展开了。
+
+    // 短路运算的妙用，js反正是支持的，也就是与、或的运算顺序。
+    // 判断一个值有没有，可以用或的逻辑运算。
+    /*
+        let ax = prompt("请输入") || "保密"
+        console.log(ax)
+        */
+
+    // 三元表达式，就是简化写的ifelse
+    let b1 = 1<2?3:4
+    console.log(b1)
+
+    // 简答的流程控制，ifelse switch 语法都很简单。
+    let b2 = 13 
+    switch(b2){
+      case b2 == 12:
+        console.log(11)
+      case b2 ==13:
+        console.log(123)
+      default:
+        console.log(01)
+    }
+    
+    // switch 会执行碰到的条件下边的操作，所以要记得放break，逻辑范围由上到下应该从大到小。
+
+
+    // while 循环控制
+    let b3 = 0
+    while(1){
+      console.log(b3)
+      if (b3<10) {
+        b3++
+      } else {
+        break
+      }
+    }
+    console.log(b3)
+
+    // do while 先进循环，然后再判断下一次循环。
+    do{
+      console.log(b3)
+    }
+    while(b3<9)
+
+    // for循环中的continue和break
+    for(let k =0;k<10;k++){
+      if(k%2 ==0){
+        console.log(k)
+      }else{
+        break
+      }
+    }
+    // 可以利用标签标定continue的位置。也可以利用标签推出多层循环，使用频率较低。
+    jjj:for(let j = 0;j<10;j++){
+      for(let k = 0;k<20;k++){
+        console.log(j,k)
+        if(k==2){
+          break jjj // break选定的循环
+        }
+      }
+    }
+
+    // 当然，对于引用（Object）的循环还可以用forin和forof，还是很方便的，但是少用forin，因为是枚举的，会把对象内部所以有的循环一边。
+    let b11 =[12,34,5]
+    for (let iterator of b11) {
+      console.log(iterator)
+    }
+
+    let b22 = {a:1,b:2}
+    for (const iterator of Object.keys(b22)) {
+      console.log(iterator)
+    }
+    
+  </script>
+</body>
+
+</html>
