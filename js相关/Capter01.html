@@ -1,30 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  
+  <div>本节说明一些关于变量的内容</div>
   <script>
     // 变量的生命以及赋值。
     // 其实变量的赋值之类的，其实是先声明，再赋值的。
     let name;
     name = 123
     console.log(name)
+
     // 但是一般情况下就简单写了
     let age = 45
     console.log(age)
+
     // 变量也可以连续定义以及赋值
     let a = b = c = 45
-    console.log(a,b,c)
+    console.log(a, b, c)
+
     // js中的变量是弱类型的，可以通过赋值改变类型
     let d = 45
     d = "qwe"
     console.log(typeof d)
-    
+
+    // 变量的定义是有变量提升的，在使用这个变量的时候，其实这个变量还没有定义，如果输出一个没有定义的变量会输出错误，如下所示。
+    // console.log(bb)
+    // 但是如果是先使用在定义则会输出一个undefined，这就是变量的提升，其实就是变量的声明提升。
+    console.log(aa) // 会输出undefined，而不是错误，也不是下边赋值的内容。
+    var aa = "asdf"
+
+    // 变量提升的出现情况有很多，这样其实是不好的。
+    function hd1() {
+      if (false) {
+        var cc = "变量提升"
+      }
+      console.log(cc) // 这个地方就涉及到变量提升了
+      // 但是用let就不会有这个问题。
+    }
+    hd1()
+
+    // let的好处之一
+    // console.log(dd)
+    // let dd; // 不会有变量提升的问题
+
+    // 当函数内部使用了一个没有定义的变量，会自动向上找。
+    let a1 = 123
+    function hd2() {
+      let a1 = 234
+      console.log(a1)
+    }
+    console.log(a1)
+    hd2()
+
+    // let 和 const块级作用域
+    var i = 100
+    /*
+    for(var i =0;i<5;i++){
+      console.log(i)
+    }
+    console.log(i)
+    */
+    // 此时的i的大小就被更改了，因为var将之前的i也给改了，是一个作用域的问题。如果用let就不存在这个问题，因为有块级作用域的关系。
+    for (let i = 0; i < 5; i++) {
+      console.log(i)
+    }
+    console.log(i) // 依旧输出100，并不会在循环过程中改变。其实var的声明就是在window对象上挂了一个变量。
+
+    //const的定义，就是用于定义一些不可更改的变量，在同一作用域中是不能更改的
+    const NUM01 = 2
+    // NUM01 = 3
+    console.log(NUM01) // 报错 不能改变 但是引用类型是可以改的 因为没有修改地址
+    const DIC01 = { a: 12 }
+    DIC01.a = 13
+    console.log(DIC01) // 引用类型内部改变了。
+
+    // 使用let 不仅不挂在window上，并且还有重复声明提示的效果。
+
+
+    // 说一下变量冻结，Object.freeze
+    const HOST = {
+      url: "www.baidu.com",
+      port: 443
+    }
+    // 但是这里边的各个变量是可以更改的。
+    HOST.port = 80
+    console.log(HOST)
+
+    // 可以使用freeze来冻结，然后让Object里边的内容不许更改。
+    Object.freeze(HOST)
+    HOST.port = 110
+    console.log(HOST) // 并没有被更改
+
+    // 传值和传址
+    let b1 = 1
+    let b2 = b1 // 这就是传值，在新的地址复制了值，然后再赋予新的地址给新的变量。
+    b1 = 3
+    console.log(b2)  // 传值
+
+
+    let c1 = {}
+    let c2 = c1
+    c1.port = 80
+    console.log(c2)  // 传址
+
+    // 传址的复制涉及到深拷贝和浅拷贝，可以在以后针对对象的讨论中再介绍。
+
+    // null和undefined
+    console.log(null == undefined) // 输出true 详细的可以看面试题中的null和undefined的区别。
+
+    // 严格模式 use strict
+
+    /*
+    "use strict"
+    // 后边就会报错
+    console.log(web)
+    web = 23
+    */
+
+
   </script>
 </body>
+
 </html>
