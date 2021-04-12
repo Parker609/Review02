@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>说一下数据类型</div>
+
+  <script>
+    let a = "123" // string
+    let b = [1, 2, 3] // Array
+    let c = {} // Object
+
+    // 还有undefined和null，这个需要理解。
+
+
+    // 判断数据类型，一般用typeof，但是，在Array和Object都会返回Object/
+    console.log(typeof b)
+
+    console.log(b instanceof Array) // 需要用这个方法来判断。
+
+
+    // 创建字符串
+    let d = new String("这是一个字符串")
+    console.log(d.toString()) // 但是这样比较麻烦，所以一般不用这样。
+
+    let e = "这是一个字符串"
+    console.log(e)
+
+    // 转义符，\
+    console.log("这是一个转义符的作用，可以输出\"")
+
+    console.log("23\n234") // \n换行
+
+    // 字符串连接
+    console.log("呵呵哒" + e)
+    // 但是目前给了一个新的写法
+    console.log(`什么是${e}呵呵哒`) // 推荐使用这个写法
+    // 上述写法中的括号里边是可以放函数的，也可以放一些其他的表达式，跟vue的{{}}类似。
+    function foo() {
+      return "this is a string"
+    }
+    console.log(`这个方法返回的值是${foo()}`)
+    console.log(`${1 + 4}`)
+
+    // 甚至这里边还可以插入一些标签元素之类的
+    let data1 = [
+      {
+        title: "title1"
+      },
+      {
+        title: "title2"
+      },
+      {
+        title: "title3"
+      }]
+    function foo2() {
+      return `<ul>${data1.map(item=>{
+        return item.title
+      })}</ul>`
+      // return `${data1.map(item => {
+
+      //   // `<li>${item.title}</li>`
+      // })}`
+    }
+
+    console.log(foo2()) // 但是一般不这么用，可写性和可读性太差了。
+
+    // 标签模板，tag
+    let g = "name"
+    let h = "web"
+
+    tag`名字是${g}，网站是${h}` // 显然这就是一个函数的样式。
+    function tag(strings,...vars){
+      console.log(strings)
+      console.log(vars)
+      // return strings + vars
+      return null
+    }
+    // 有点像是按照tag里边的模板将整个string给拆分了，分别拿到string里边的变量和非变量。
+
+    // 说明一下字符串的一些函数
+    let s1 = " www.baidu.com"
+    console.log(s1.length)
+    console.log(s1.toUpperCase())
+    console.log(s1.toLowerCase())
+    console.log(s1.trim()) // 去除左右空白
+
+    console.log(s1.charAt(1))
+    console.log(s1[1+5])
+
+    
+
+  </script>
+</body>
+
+</html>
